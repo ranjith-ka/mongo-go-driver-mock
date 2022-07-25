@@ -15,14 +15,14 @@ func TestDeleteOne(t *testing.T) {
 
 	mt.Run("success", func(mt *mtest.T) {
 		userCollection = mt.Coll
-		mt.AddMockResponses(bson.D{{"ok", 1}, {"acknowledged", true}, {"n", 1}})
+		mt.AddMockResponses(bson.D{{Key: "ok", Value: 1}, {Key: "acknowledged", Value: true}, {Key: "n", Value: 1}})
 		err := delete(primitive.NewObjectID())
 		assert.Nil(t, err)
 	})
 
 	mt.Run("no document deleted", func(mt *mtest.T) {
 		userCollection = mt.Coll
-		mt.AddMockResponses(bson.D{{"ok", 1}, {"acknowledged", true}, {"n", 0}})
+		mt.AddMockResponses(bson.D{{Key: "ok", Value: 1}, {Key: "acknowledged", Value: true}, {Key: "n", Value: 0}})
 		err := delete(primitive.NewObjectID())
 		assert.NotNil(t, err)
 	})

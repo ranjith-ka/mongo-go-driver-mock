@@ -49,7 +49,7 @@ func TestInsertOne(t *testing.T) {
 
 	mt.Run("simple error", func(mt *mtest.T) {
 		userCollection = mt.Coll
-		mt.AddMockResponses(bson.D{{"ok", 0}})
+		mt.AddMockResponses(bson.D{{Key: "ok", Value: 0}})
 
 		insertedUser, err := insert(user{})
 

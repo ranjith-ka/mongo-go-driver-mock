@@ -22,9 +22,9 @@ func TestFindOne(t *testing.T) {
 		}
 
 		mt.AddMockResponses(mtest.CreateCursorResponse(1, "foo.bar", mtest.FirstBatch, bson.D{
-			{"_id", expectedUser.ID},
-			{"name", expectedUser.Name},
-			{"email", expectedUser.Email},
+			{Key: "_id", Value: expectedUser.ID},
+			{Key: "name", Value: expectedUser.Name},
+			{Key: "email", Value: expectedUser.Email},
 		}))
 		userResponse, err := getFromID(expectedUser.ID)
 		assert.Nil(t, err)
@@ -42,14 +42,14 @@ func TestFind(t *testing.T) {
 		id2 := primitive.NewObjectID()
 
 		first := mtest.CreateCursorResponse(1, "foo.bar", mtest.FirstBatch, bson.D{
-			{"_id", id1},
-			{"name", "john"},
-			{"email", "john.doe@test.com"},
+			{Key: "_id", Value: id1},
+			{Key: "name", Value: "john"},
+			{Key: "email", Value: "john.doe@test.com"},
 		})
 		second := mtest.CreateCursorResponse(1, "foo.bar", mtest.NextBatch, bson.D{
-			{"_id", id2},
-			{"name", "john"},
-			{"email", "foo.bar@test.com"},
+			{Key: "_id", Value: id2},
+			{Key: "name", Value: "john"},
+			{Key: "email", Value: "foo.bar@test.com"},
 		})
 		killCursors := mtest.CreateCursorResponse(0, "foo.bar", mtest.NextBatch)
 		mt.AddMockResponses(first, second, killCursors)

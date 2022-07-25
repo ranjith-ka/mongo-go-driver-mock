@@ -21,11 +21,11 @@ func TestFindOneAndUpdate(t *testing.T) {
 			Email: "john.doe@test.com",
 		}
 		mt.AddMockResponses(bson.D{
-			{"ok", 1},
-			{"value", bson.D{
-				{"_id", userData.ID},
-				{"name", userData.Name},
-				{"email", userData.Email},
+			{Key: "ok", Value: 1},
+			{Key: "value", Value: bson.D{
+				{Key: "_id", Value: userData.ID},
+				{Key: "name", Value: userData.Name},
+				{Key: "email", Value: userData.Email},
 			}},
 		})
 

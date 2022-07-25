@@ -11,9 +11,9 @@ func update(userData user) (*user, error) {
 	if err := userCollection.FindOneAndUpdate(
 		context.Background(),
 		bson.D{
-			{"_id", userData.ID},
+			{Key: "_id", Value: userData.ID},
 		},
-		bson.D{{"$set", userData}},
+		bson.D{{Key: "$set", Value: userData}},
 		options.FindOneAndUpdate().SetReturnDocument(1),
 	).Decode(&userData); err != nil {
 		return nil, err
